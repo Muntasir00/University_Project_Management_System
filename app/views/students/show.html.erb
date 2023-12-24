@@ -1,0 +1,52 @@
+<div class="row">
+
+
+    <div class="col s6 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+            <span class="card-title"><%= @student.name %></span>
+            <p class="black-text text-darken-2" ><strong><%= @student.email %></strong></p>
+            <br>
+            
+            <% if current_user == @student %>
+                <%= link_to '<i class="material-icons right">create</i>Edit your profile'.html_safe, edit_student_path(@student),class:"waves-effect waves-light btn-small" %>
+            <% end %>
+            <%= link_to '<i class="material-icons right">create</i>Create Project'.html_safe, new_project_path,class:"waves-effect waves-light btn-small" %>
+            </div>
+            <div class="card-action">
+                <p  class="black-text text-darken-2" ><strong>Courses Enrollmrnts:</strong>
+                    <%if @student.courses.empty? %>
+                    None
+                    <% else %>
+                    <table class="highlight" >
+                    <thead>
+                    <tr>
+                        <th>Course No</th>
+                        <th>Course Title</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                        <% @student.courses.each do |course| %>
+                            <tr>
+                            <td><%= course.short_name %></td>
+                            <td><%= course.name %></td>
+                            </tr>
+                        <% end %>
+                        
+                    </tbody>
+                    </table>
+                    <% end %>
+
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
